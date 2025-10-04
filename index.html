@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Your Name • Data Analyst Portfolio</title>
+  <meta name="description" content="Portfolio of Your Name, a Data Analyst. Projects in Power BI, SQL, Python, and A B Testing." />
+  <meta name="author" content="Your Name" />
+  <meta property="og:title" content="Your Name • Data Analyst" />
+  <meta property="og:description" content="Explore dashboards, case studies, and data storytelling projects." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="assets/preview.png" />
+  <meta property="og:url" content="https://your-domain.com" />
+  <link rel="icon" href="assets/favicon.ico" />
+  <style>
+    :root {
+      --bg: #0b1220;
+      --card: #121a2b;
+      --text: #e7ecf6;
+      --muted: #a9b3c7;
+      --brand: #5b9dff;
+      --accent: #6ee7b7;
+      --danger: #ff6b6b;
+      --ring: rgba(91, 157, 255, .35);
+      --radius: 16px;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      background: radial-gradient(1200px 800px at 20% -10%, rgba(91,157,255,.12), transparent 60%),
+                  radial-gradient(1000px 600px at 120% 10%, rgba(110,231,183,.10), transparent 50%),
+                  var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* Header */
+    .site-header {
+      position: sticky; top: 0; z-index: 50;
+      backdrop-filter: saturate(1.2) blur(10px);
+      background: linear-gradient(to bottom, rgba(11,18,32,.85), rgba(11,18,32,.65));
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+    .nav {
+      display: flex; align-items: center; justify-content: space-between;
+      max-width: 1100px; margin: 0 auto; padding: 14px 20px;
+    }
+    .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--text); }
+    .brand-logo { width: 34px; height: 34px; border-radius: 50%; background: linear-gradient(135deg, var(--brand), var(--accent)); box-shadow: inset 0 0 0 2px rgba(255,255,255,.12); }
+    .brand-name { font-weight: 700; letter-spacing: .2px; }
+    .nav ul { display: flex; gap: 18px; list-style: none; padding: 0; margin: 0; }
+    .nav a { color: var(--muted); text-decoration: none; font-weight: 600; padding: 8px 10px; border-radius: 10px; }
+    .nav a:hover, .nav a:focus { color: var(--text); background: rgba(255,255,255,.06); outline: none; }
+
+    /* Hero */
+    .hero { max-width: 1100px; margin: 40px auto; padding: 0 20px 20px; display: grid; grid-template-columns: 1.1fr .9fr; gap: 28px; align-items: center; }
+    .hero-card { background: linear-gradient(180deg, rgba(91,157,255,.08), rgba(18,26,43,.9)); border: 1px solid rgba(255,255,255,.06); border-radius: var(--radius); padding: 28px; box-shadow: var(--shadow); }
+    .hero h1 { font-size: clamp(28px, 3.6vw, 44px); line-height: 1.15; margin: 0 0 10px; }
+    .hero p { color: var(--muted); margin: 0 0 18px; }
+    .badges { display: flex; flex-wrap: wrap; gap: 10px; margin: 12px 0 22px; }
+    .badge { background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.10); padding: 8px 12px; border-radius: 999px; font-size: 14px; }
+    .cta { display: flex; gap: 12px; flex-wrap: wrap; }
+    .btn { display: inline-flex; align-items: center; gap: 10px; border: 1px solid rgba(255,255,255,.12); padding: 12px 16px; border-radius: 12px; text-decoration: none; font-weight: 700; }
+    .btn-primary { background: linear-gradient(135deg, var(--brand), #3f83f8); color: #0b1220; border-color: transparent; box-shadow: 0 10px 20px var(--ring); }
+    .btn-ghost { color: var(--text); }
+
+    .hero-aside { position: relative; }
+    .card { background: var(--card); border: 1px solid rgba(255,255,255,.06); border-radius: var(--radius); padding: 20px; box-shadow: var(--shadow); }
+    .stats { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; margin-top: 12px; }
+    .stat { text-align: center; background: rgba(91,157,255,.06); border: 1px solid rgba(91,157,255,.18); padding: 14px; border-radius: 14px; }
+    .stat strong { display: block; font-size: 20px; }
+    .divider { height: 1px; background: rgba(255,255,255,.06); margin: 18px 0; }
+
+    /* Sections */
+    section { max-width: 1100px; margin: 0 auto; padding: 32px 20px; }
+    .section-title { font-size: 22px; margin: 0 0 18px; }
+    .section-sub { color: var(--muted); margin: -6px 0 18px; }
+
+    /* Projects */
+    .projects { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .project { display: grid; grid-template-rows: auto 1fr auto; gap: 10px; background: linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.00)); border: 1px solid rgba(255,255,255,.06); border-radius: 16px; padding: 14px; }
+    .project .thumb { aspect-ratio: 16/9; border-radius: 12px; background: linear-gradient(135deg, rgba(91,157,255,.20), rgba(110,231,183,.15)); border: 1px dashed rgba(255,255,255,.14); display: grid; place-content: center; color: var(--muted); font-size: 14px; }
+    .project h3 { margin: 0; font-size: 18px; }
+    .project p { margin: 0; color: var(--muted); }
+    .tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 8px 0 2px; }
+    .tag { font-size: 12px; padding: 6px 10px; border-radius: 999px; border: 1px solid rgba(255,255,255,.10); color: var(--muted); }
+    .project a.btn { justify-content: center; }
+
+    /* About */
+    .about { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+
+    /* Contact */
+    .contact-grid { display: grid; grid-template-columns: 1.2fr .8fr; gap: 20px; }
+    .form { display: grid; gap: 12px; }
+    .input, .textarea { width: 100%; border-radius: 12px; background: #0e1628; border: 1px solid rgba(255,255,255,.10); color: var(--text); padding: 12px 14px; font-size: 16px; }
+    .textarea { min-height: 140px; resize: vertical; }
+    .input:focus, .textarea:focus { outline: 2px solid var(--ring); border-color: transparent; }
+
+    /* Footer */
+    footer { border-top: 1px solid rgba(255,255,255,.06); color: var(--muted); }
+    .footer-inner { max-width: 1100px; margin: 0 auto; padding: 22px 20px; display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+
+    /* Socials */
+    .socials { display: flex; gap: 10px; flex-wrap: wrap; }
+    .icon-btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 12px; border-radius: 12px; border: 1px solid rgba(255,255,255,.10); background: rgba(255,255,255,.04); color: var(--text); text-decoration: none; }
+    .icon { width: 18px; height: 18px; display: inline-block; }
+
+    /* Responsive */
+    @media (max-width: 980px) {
+      .hero { grid-template-columns: 1fr; }
+      .about { grid-template-columns: 1fr; }
+      .projects { grid-template-columns: repeat(2, 1fr); }
+      .contact-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 640px) {
+      .nav ul { display: none; }
+      .projects { grid-template-columns: 1fr; }
+    }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Your Name",
+    "jobTitle": "Data Analyst",
+    "url": "https://your-domain.com",
+    "sameAs": [
+      "https://www.linkedin.com/in/your-handle",
+      "https://github.com/your-handle",
+      "https://twitter.com/your-handle"
+    ]
+  }
+  </script>
+</head>
+<body>
+  <!-- Header -->
+  <header class="site-header" aria-label="Main navigation">
+    <nav class="nav">
+      <a href="#top" class="brand">
+        <span class="brand-logo" aria-hidden="true"></span>
+        <span class="brand-name">Your Name</span>
+      </a>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Work</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <main id="top" class="hero" aria-label="Introduction">
+    <div class="hero-card">
+      <h1>Hello, I am <span style="color: var(--brand)">Your Name</span>. I use data to answer important questions.</h1>
+      <p>I am a Data Analyst with experience in business intelligence, dashboard design, SQL, Python, and A B testing. I enjoy turning messy data into clear decisions.</p>
+      <div class="badges" aria-label="Skills">
+        <span class="badge">Power BI</span>
+        <span class="badge">SQL</span>
+        <span class="badge">Python</span>
+        <span class="badge">Pandas</span>
+        <span class="badge">A B Testing</span>
+        <span class="badge">Data Visualization</span>
+      </div>
+      <div class="cta">
+        <a class="btn btn-primary" href="#projects">See My Work</a>
+        <a class="btn btn-ghost" href="#contact">Hire Me</a>
+      </div>
+    </div>
+    <aside class="hero-aside">
+      <div class="card">
+        <h3 style="margin: 0 0 6px;">Quick Stats</h3>
+        <p class="section-sub" style="margin: 0;">Snapshot of my impact</p>
+        <div class="stats">
+          <div class="stat"><strong>25+</strong><span>Dashboards</span></div>
+          <div class="stat"><strong>40%</strong><span>Faster Decisions</span></div>
+          <div class="stat"><strong>10+</strong><span>Industries</span></div>
+        </div>
+        <div class="divider"></div>
+        <p style="margin: 0; color: var(--muted);">Open to freelance and full time roles. Available for remote and Lagos based engagements.</p>
+      </div>
+    </aside>
+  </main>
+
+  <!-- Projects -->
+  <section id="projects" aria-label="Projects">
+    <h2 class="section-title">Selected Work</h2>
+    <p class="section-sub">Here are a few projects that show my skills. You can open each one to see details.</p>
+    <div class="projects">
+      <!-- Project 1 -->
+      <article class="project" aria-labelledby="p1-title">
+        <div class="thumb">Project thumbnail</div>
+        <div>
+          <h3 id="p1-title">Sales Performance Dashboard</h3>
+          <p>Power BI dashboard for a retail company. It shows revenue trends, cohort retention, and branch performance. It helped leadership to improve stock planning.</p>
+          <div class="tags">
+            <span class="tag">Power BI</span>
+            <span class="tag">DAX</span>
+            <span class="tag">Data Modeling</span>
+          </div>
+        </div>
+        <a class="btn btn-ghost" href="https://your-live-demo-link" target="_blank" rel="noopener">View Live</a>
+      </article>
+
+      <!-- Project 2 -->
+      <article class="project" aria-labelledby="p2-title">
+        <div class="thumb">Project thumbnail</div>
+        <div>
+          <h3 id="p2-title">Customer Churn Analysis</h3>
+          <p>SQL and Python case study to find key churn drivers. I used logistic regression and feature importance to guide customer retention actions.</p>
+          <div class="tags">
+            <span class="tag">SQL</span>
+            <span class="tag">Python</span>
+            <span class="tag">Logistic Regression</span>
+          </div>
+        </div>
+        <a class="btn btn-ghost" href="https://github.com/your-handle/churn-analysis" target="_blank" rel="noopener">View Code</a>
+      </article>
+
+      <!-- Project 3 -->
+      <article class="project" aria-labelledby="p3-title">
+        <div class="thumb">Project thumbnail</div>
+        <div>
+          <h3 id="p3-title">Marketing A B Test</h3>
+          <p>Designed and analyzed an A B test for a subscription product. I calculated minimum sample size, ran the test, and reported the uplift and confidence.</p>
+          <div class="tags">
+            <span class="tag">Experiment Design</span>
+            <span class="tag">Pandas</span>
+            <span class="tag">Visualization</span>
+          </div>
+        </div>
+        <a class="btn btn-ghost" href="https://your-report-link" target="_blank" rel="noopener">Read Report</a>
+      </article>
+
+      <!-- Project 4 -->
+      <article class="project" aria-labelledby="p4-title">
+        <div class="thumb">Project thumbnail</div>
+        <div>
+          <h3 id="p4-title">Supply Chain KPI Tracker</h3>
+          <p>Automated weekly KPI tracker with Python. The script cleans raw CSV files, refreshes a dashboard, and emails a summary to stakeholders.</p>
+          <div class="tags">
+            <span class="tag">Python</span>
+            <span class="tag">Automation</span>
+            <span class="tag">Scheduling</span>
+          </div>
+        </div>
+        <a class="btn btn-ghost" href="https://github.com/your-handle/kpi-tracker" target="_blank" rel="noopener">View Code</a>
+      </article>
+
+      <!-- Project 5 -->
+      <article class="project" aria-labelledby="p5-title">
+        <div class="thumb">Project thumbnail</div>
+        <div>
+          <h3 id="p5-title">Fraud Detection Exploration</h3>
+          <p>Exploratory data analysis on credit card transactions. I profiled features, visualized patterns, and proposed a model approach.</p>
+          <div class="tags">
+            <span class="tag">EDA</span>
+            <span class="tag">Matplotlib</span>
+            <span class="tag">Imbalanced Data</span>
+          </div>
+        </div>
+        <a class="btn btn-ghost" href="https://github.com/your-handle/fraud-eda" target="_blank" rel="noopener">View Code</a>
+      </article>
+
+      <!-- Project 6 -->
+      <article class="project" aria-labelledby="p6-title">
+        <div class="thumb">Project thumbnail</div>
+        <div>
+          <h3 id="p6-title">Nigeria Market Insights</h3>
+          <p>Storytelling project that combines macro data and sector indicators. It highlights signals and risks for investors.</p>
+          <div class="tags">
+            <span class="tag">Storytelling</span>
+            <span class="tag">Power BI</span>
+            <span class="tag">Time Series</span>
+          </div>
+        </div>
+        <a class="btn btn-ghost" href="https://your-live-demo-link-2" target="_blank" rel="noopener">View Live</a>
+      </article>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" aria-label="About me">
+    <h2 class="section-title">About Me</h2>
+    <div class="about">
+      <div class="card">
+        <p>Hello. My name is Your Name. I am a Data Analyst based in Lagos, Nigeria. I help teams to make better decisions with clean data and simple visuals. I enjoy working on business questions that have clear results.</p>
+        <p>My core skills include Power BI, SQL, and Python. I also write clean documentation and clear reports. I focus on accuracy and speed.</p>
+        <ul>
+          <li>Domain experience: Finance, Retail, Operations, Education</li>
+          <li>Strengths: Communication, data cleaning, modeling, and visualization</li>
+          <li>Tools: Power BI, Excel, SQL Server, PostgreSQL, Python, Git</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3 style="margin-top:0">Highlights</h3>
+        <ul>
+          <li>Reduced reporting time by 40 percent with an automated pipeline</li>
+          <li>Built a sales dashboard used by 30 plus managers weekly</li>
+          <li>Trained a team of analysts on Power BI best practices</li>
+        </ul>
+        <div class="divider"></div>
+        <h3>Resume</h3>
+        <p>You can download my resume or request it by email.</p>
+        <a class="btn btn-primary" href="assets/YourName-Resume.pdf" download>Download Resume</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" aria-label="Contact form">
+    <h2 class="section-title">Contact</h2>
+    <p class="section-sub">Send a message. I will reply within two business days.</p>
+    <div class="contact-grid">
+      <form class="card form" action="https://formspree.io/f/your-code" method="POST">
+        <label>
+          <span>Name</span>
+          <input class="input" type="text" name="name" required placeholder="Your full name" />
+        </label>
+        <label>
+          <span>Email</span>
+          <input class="input" type="email" name="email" required placeholder="your@email.com" />
+        </label>
+        <label>
+          <span>Message</span>
+          <textarea class="textarea" name="message" required placeholder="Tell me about your project or role"></textarea>
+        </label>
+        <button class="btn btn-primary" type="submit">Send Message</button>
+        <p style="color:var(--muted); font-size:14px; margin:0">By sending this message you agree to be contacted by email.</p>
+      </form>
+      <aside class="card">
+        <h3 style="margin-top:0">Connect</h3>
+        <div class="socials" aria-label="Social media links">
+          <a class="icon-btn" href="mailto:you@domain.com" aria-label="Email">
+            <svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M2 6a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6Zm2 0 8 5 8-5H4Zm16 12V8l-8 5-8-5v10h16Z"/></svg>
+            Email
+          </a>
+          <a class="icon-btn" href="https://www.linkedin.com/in/your-handle" target="_blank" rel="noopener" aria-label="LinkedIn">
+            <svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8h4V23h-4V8zm7 0h3.8v2.05h.05c.53-1 1.84-2.05 3.79-2.05 4.05 0 4.8 2.66 4.8 6.12V23h-4v-6.6c0-1.57-.03-3.6-2.2-3.6-2.2 0-2.54 1.72-2.54 3.5V23h-3.8V8z"/></svg>
+            LinkedIn
+          </a>
+          <a class="icon-btn" href="https://github.com/your-handle" target="_blank" rel="noopener" aria-label="GitHub">
+            <svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 6.58 2 12.26c0 4.52 2.87 8.35 6.84 9.71.5.1.68-.22.68-.49 0-.24-.01-.86-.01-1.69-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.49-1.11-1.49-.91-.64.07-.63.07-.63 1 .07 1.53 1.05 1.53 1.05 .9 1.57 2.37 1.12 2.95.85 .09-.68 .35-1.12 .63-1.38-2.22-.26-4.55-1.14-4.55-5.06 0-1.12 .39-2.03 1.03-2.75-.1-.26-.45-1.31 .1-2.73 0 0 .84-.27 2.75 1.05A9.2 9.2 0 0 1 12 7.3c.85 0 1.71 .12 2.51 .35 1.9-1.32 2.74-1.05 2.74-1.05 .55 1.42 .2 2.47 .1 2.73 .65 .72 1.04 1.63 1.04 2.75 0 3.93-2.34 4.79-4.57 5.04 .36 .32 .68 .95 .68 1.92 0 1.38-.01 2.49-.01 2.82 0 .27 .18 .59 .69 .48A10.04 10.04 0 0 0 22 12.26C22 6.58 17.52 2 12 2Z"/></svg>
+            GitHub
+          </a>
+          <a class="icon-btn" href="https://twitter.com/your-handle" target="_blank" rel="noopener" aria-label="Twitter">
+            <svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22.46 6c-.77.35-1.6.58-2.46.69a4.23 4.23 0 0 0 1.86-2.34 8.4 8.4 0 0 1-2.67 1.03 4.2 4.2 0 0 0-7.2 3.83 11.92 11.92 0 0 1-8.66-4.45 4.2 4.2 0 0 0 1.3 5.6c-.66-.02-1.28-.2-1.82-.5v.05a4.2 4.2 0 0 0 3.37 4.12c-.56.15-1.16.18-1.75.07a4.2 4.2 0 0 0 3.92 2.92A8.43 8.43 0 0 1 2 19.54 11.9 11.9 0 0 0 8.29 21c7.55 0 11.68-6.36 11.68-11.88l-.01-.54A8.46 8.46 0 0 0 22.46 6Z"/></svg>
+            Twitter
+          </a>
+        </div>
+        <div style="height:10px"></div>
+        <address style="font-style: normal; color: var(--muted);">
+          Lagos, Nigeria<br />
+          Available for remote work
+        </address>
+      </aside>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-inner">
+      <span>© <span id="year"></span> Your Name. All rights reserved.</span>
+      <a href="#top" class="btn btn-ghost" aria-label="Back to top">Back to Top</a>
+    </div>
+  </footer>
+
+  <script>
+    // Set current year in footer
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
